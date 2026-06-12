@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Doriê - Art 3D</title>
+  <meta name="description" content="Moldes, ejetores e carimbos exclusivos in impressão 3D e silicone para confeitaria e artesanato." />
+  
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ====== PALETA DE CORES "UNIVERSO" ====== */
+    :root {
+      --bg: #1a1a1a;
+      --text: #f8f8f8;
+      --accent: #8b5cf6; /* Roxo Vibrante */
+      --accent-2: #1e3a8a; /* Azul profundo */
+      --muted: #a0a0a0;
+      --card-bg: #ffffff;
+      
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
+      
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* ====== Base & Reset ====== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: var(--font-display); color: var(--accent); }
+    img { max-width: 100%; display: block; }
+    
+    /* ====== Layout & Seções ====== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+    section {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    /* ====== NAV ====== */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; backdrop-filter: blur(8px);
+      position: sticky; top: 0;
+      background: rgba(26, 26, 26, 0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 40;
+    }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    
+    .logo-image {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .logo-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { transition: color 0.2s; color: var(--text); font-weight: 500;}
+    .nav-links a:hover { color: var(--accent); }
+    .nav-buttons { display:flex; gap:8px; align-items:center; }
+
+    /* ====== BOTÕES ====== */
+    .btn {
+      padding: 12px 20px; border-radius: var(--radius);
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      color: white; font-weight: 600; border: none; cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5); }
+    
+    .outline {
+      padding: 10px 18px; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      transition: all 0.2s ease-in-out; cursor: pointer; color: var(--text); font-weight: 500;
+    }
+    .outline:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+
+    /* Botão Adicionar específico do Card (Roxo para dar destaque) */
+    .btn-add {
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-add:hover {
+      background: #7c3aed; /* Roxo ligeiramente mais escuro no hover */
+      transform: translateY(-1px);
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 48px; align-items: center;
+      min-height: 80vh;
+    }
+    .hero-left h1 { font-size: 2.8rem; line-height: 1.2; margin: 0 0 16px; color: var(--text); }
+    .hero-left p { color: var(--muted); margin: 0 0 24px; line-height: 1.6; font-size: 1.1rem; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .hero-img-wrapper {
+        border-radius: var(--radius); padding: 18px;
+        background: linear-gradient(180deg, rgba(139, 92, 246, 0.1), rgba(30, 58, 138, 0.05));
+    }
+    .product-sample {
+        width: 100%; height: 380px; border-radius: var(--radius);
+        box-shadow: var(--shadow); overflow: hidden;
+    }
+    .product-sample img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-subtext { margin-top:18px; font-size:14px; color: var(--muted); }
+
+    /* ====== CATEGORIAS ====== */
+    .categories {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center;
+      padding-top: 0;
+    }
+    .cat-button {
+      padding: 12px 24px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center; font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .cat-button:hover { background: rgba(255, 255, 255, 0.2); border-color: var(--accent); }
+    .cat-button.destaque-1 { background-color: rgba(30, 58, 138, 0.4); border-color: rgba(67, 90, 204, 0.8); }
+    .cat-button.destaque-2 { background-color: rgba(139, 92, 246, 0.25); border-color: rgba(167, 139, 250, 0.7); }
+    
+    /* ====== PRODUTOS (LOJA) ====== */
+    .section-title { text-align: center; }
+    .section-title p { max-width: 600px; margin: 0 auto 30px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease-in-out; border: 1px solid rgba(0,0,0,0.05); color: #1a1a1a; }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .card img { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; }
+    .card h3 { margin: 0; font-size: 1.2rem; color: #1a1a1a; font-family: var(--font-body); font-weight: 700; }
+    .price { font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+
+    /* ====== SEÇÃO SOBRE ====== */
+    .section-about { background: #222; }
+    .about-content { max-width:900px; margin:0 auto; text-align: center; }
+    .about-content p { font-size: 1.1rem; line-height: 1.7; color: var(--muted); }
+    
+    /* ====== SEÇÃO CONTATO ====== */
+    .contact-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 320px; gap:40px; align-items:flex-start; }
+    .contact-form { display:flex; flex-direction:column; gap:12px; }
+    .contact-info { background:#2a2a2a; padding:24px; border-radius:var(--radius); box-shadow: var(--shadow-sm); }
+    .contact-info p { font-size: 0.9rem; color: var(--muted); }
+    .contact-info a { color: var(--accent); font-weight: bold; text-decoration: underline; text-underline-offset: 3px;}
+    
+    /* ====== FORMULÁRIO ====== */
+    input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background-color: #333; color: var(--text); font-family: var(--font-body); font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3); }
+    
+    /* ====== FOOTER ====== */
+    footer { padding: 40px 6% 30px; margin-top: 40px; background: #1a1a1a; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; color: var(--text); flex-wrap: wrap; gap: 20px;}
+    
+    /* ====== CARRINHO ====== */
+    .cart-side { position: fixed; right: 24px; bottom: 24px; background: #2a2a2a; border-radius: 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.3); width: 380px; max-width: 92%; padding: 18px; display: none; flex-direction: column; gap: 16px; border: 1px solid rgba(255,255,255,0.1); color: var(--text); z-index: 50;}
+    .cart-head { display: flex; justify-content: space-between; align-items: center; }
+    .cart-items { max-height: 320px; overflow: auto; display: flex; flex-direction: column; gap: 12px; padding-right: 8px; }
+    .cart-item { display: flex; gap: 12px; align-items: center; }
+    .cart-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+    .cart-item-details { flex:1; }
+    .cart-item-title { font-weight:600; font-size: 0.9rem; }
+    .cart-item-controls { display:flex; align-items: center; gap: 8px; }
+    .cart-item-controls .outline { padding: 4px 8px; }
+    .cart-item-remove { border:none; background: none; cursor:pointer; color: var(--muted); font-size: 1.2rem; }
+    .cart-footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px; }
+    .cart-total { display:flex;justify-content:space-between;align-items:center; }
+    .cart-total-value { font-weight:700; font-size: 1.2rem; }
+    .cart-actions { display:flex; gap:8px; margin-top: 16px; }
+    #checkoutBtn { width: 100%; }
+
+    /* ====== RESPONSIVIDADE ====== */
+    @media (max-width: 1000px) { 
+      .hero { grid-template-columns: 1fr; grid-auto-rows: auto; text-align: center; } 
+      .hero-left { order: 2; } 
+      .hero-img-wrapper { order: 1; } 
+      .hero-actions { justify-content: center; } 
+      .grid { grid-template-columns: repeat(2, 1fr); } 
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) { 
+      .nav-links { display: none; } 
+      .grid { grid-template-columns: 1fr; } 
+      .cart-side { width: 92%; right: 4%; left: 4%; bottom: 14px; } 
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+ <header class="nav">
+   <a href="#home" class="brand" aria-label="Página inicial Doriê - Art 3D">
+     <div class="logo-image">
+       <img src="logo.png" alt="Logo Doriê - Art 3D">
+     </div>
+     <div>
+       <div style="font-weight:700; font-family: var(--font-body);">Doriê - Art 3D</div>
+     </div>
+   </a>
+   <nav class="nav-links" aria-label="principal">
+     <a href="#home">Home</a>
+     <a href="#loja">Loja</a>
+     <a href="#sobre">Sobre Nós</a>
+     <a href="#contato">Contato</a>
+   </nav>
+   <div class="nav-buttons">
+     <button class="btn" id="openCartBtn">Carrinho (0)</button>
+   </div>
+ </header>
+
+ <main>
+   <section id="home" class="container hero">
+     <div class="hero-left">
+       <h1>Inovação em cada detalhe para suas criações.</h1>
+       <p>Aumente sua produtividade e eleve o nível do seu trabalho. Fabricamos moldes de alta precisão, ejetores duráveis e carimbos marcadores exclusivos em tecnologia 3D e silicone para confeitaria, biscuit e artesanato.</p>
+       <div class="hero-actions">
+         <a href="#loja" class="btn">Explorar Produtos</a>
+         <a href="#sobre" class="outline">Conheça a Doriê</a>
+       </div>
+       <div class="hero-subtext">Envio rápido para todo o Brasil • Modelos exclusivos e sob encomenda</div>
+     </div>
+     <div class="hero-img-wrapper">
+       <div class="product-sample">
+         <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=600" alt="Ferramentas e moldes 3D de alta precisão">
+       </div>
+     </div>
+   </section>
+
+   <section class="container categories" aria-label="coleções">
+       <a href="#" class="cat-button destaque-1">Ejetores Max</a>
+       <a href="#" class="cat-button destaque-2">Moldes de Silicone</a>
+       <a href="#" class="cat-button">Carimbos & Marcadores</a>
+       <a href="#" class="cat-button">Projetos Personalizados</a>
+   </section>
+
+   <section id="loja" class="container">
+     <div class="section-title">
+       <h2>Nossas Ferramentas 3D</h2>
+       <p>Escolha os melhores ejetores, moldes e carimbos para dar vida e padronização às suas produções.</p>
+     </div>
+     <div class="grid" id="productGrid"></div>
+   </section>
+
+   <section id="sobre" class="section-about">
+     <div class="container about-content">
+       <h2>Tecnologia 3D a serviço da sua arte.</h2>
+       <p>A Doriê - Art 3D nasceu para transformar a rotina de confeiteiros e artesãos. Unindo engenharia de precisão com design criativo, desenvolvemos ferramentas que garantem padronização perfeita, rapidez na produção e detalhes impressionantes que encantam clientes.</p>
+     </div>
+   </section>
+
+   <section id="contato" class="container">
+     <div class="contact-grid">
+       <div>
+         <h2>Encomendas Personalizadas</h2>
+         <p>Precisa de um logotipo específico, um cortador com formato exclusivo ou um carimbo com a sua marca? Conte sua ideia para nós e faremos o projeto em 3D!</p>
+         <form id="contactForm" style="margin-top: 24px;">
+           <div class="contact-form">
+             <input aria-label="nome" id="cname" placeholder="Seu nome" required />
+             <input aria-label="email" type="email" id="cemail" placeholder="Seu e-mail" required />
+             <textarea id="cmsg" placeholder="Descreva o tamanho, formato ou ideia do seu molde/carimbo personalizado..." rows="5" required></textarea>
+             <button class="btn" type="submit">Solicitar Orçamento</button>
+           </div>
+         </form>
+       </div>
+       <div class="contact-info">
+         <h3>Formas de envio</h3>
+         <p>Enviamos para todo o Brasil via Correios (Sedex/PAC) e transportadoras parceiras com código de rastreio.</p>
+         <h3 style="margin-top:24px">Redes Sociais & Suporte</h3>
+         <p>Fique por dentro dos lançamentos no <a href="https://www.instagram.com/zandori.art/" target="_blank">@dorie.art3d</a> ou tire dúvidas no <a href="https://wa.me/5511964313457" target="_blank">WhatsApp</a>.</p>
+       </div>
+     </div>
+   </section>
+ </main>
+
+ <footer>
+   <div>
+     <div style="font-weight:700">Doriê - Art 3D</div>
+     <div class="muted" style="font-size:13px" id="footer-year"></div>
+   </div>
+   <div style="text-align:right">
+     <div class="muted">Ferramentas Profissionais para Artesanato</div>
+     <div style="margin-top:7px">
+        <a href="https://wa.me/5511964313457?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Dori%C3%AA%20e%20gostaria%20de%20solicitar%20um%20projeto%203D%20personalizado." target="_blank" class="outline">Orçamento via WhatsApp</a>
+    </div>
+   </div>
+ </footer>
+
+ <aside class="cart-side" id="cartSide" style="display:none">
+   <div class="cart-head">
+     <h3>Seu Pedido</h3>
+     <button class="outline" id="closeCartBtn">Fechar</button>
+   </div>
+   <div class="cart-items" id="cartItems">
+     <div class="muted">Seu carrinho está vazio.</div>
+   </div>
+   <div class="cart-footer">
+    <div class="cart-total">
+        <div class="muted">Total</div>
+        <div class="cart-total-value">R$ <span id="cartTotal">0,00</span></div>
+    </div>
+    <div class="cart-actions">
+        <button class="btn" id="checkoutBtn">Finalizar no WhatsApp</button>
+        <button class="outline" id="clearCartBtn">Limpar</button>
+    </div>
+   </div>
+ </aside>
+
+  <script>
+    const products = [ 
+      {id:1, title:'Ejetor Max - Flores Clássicas', price:45.00, img:'https://images.unsplash.com/photo-1516685018646-549198525c1b?auto=format&fit=crop&q=80&w=400', desc:'Ejetor completo em plástico PLA biodegradável de alta resistência. Acompanha 4 marcadores de flores diferentes para doces de 20g a 40g.'}, 
+      {id:2, title:'Molde de Silicone - Mini Laços', price:32.00, img:'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400', desc:'Molde em silicone alimentício de alta flexibilidade. Perfeito para pasta americana, chocolate, biscuit e resina.'}, 
+      {id:3, title:'Carimbo Marcador - Bento Cake', price:19.90, img:'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=400', desc:'Carimbo marcador com cabo anatômico. Ideal para marcar frases divertidas diretamente em massas, biscoitos ou pasta americana.'}, 
+      {id:4, title:'Kit Cortador + Carimbo Páscoa', price:38.50, img:'https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&q=80&w=400', desc:'Conjunto com cortador de contorno e marcador interno de coelhinho. Recorte preciso e marcação profunda que não some ao assar.'}, 
+      {id:5, title:'Molde de Silicone - Alfabeto Slim', price:49.90, img:'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&q=80&w=400', desc:'Letras maiúsculas e números com fonte moderna e limpa. Suporta temperaturas de -40°C a 210°C.'}, 
+      {id:6, title:'Ejetor Max - Elementos Sagrados', price:48.00, img:'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?auto=format&fit=crop&q=80&w=400', desc:'Ejetor exclusivo para doces finos e lembrancinhas. Marcações nítidas e sistema de mola suave que não gruda na massa.'} 
+    ];
+    
+    const grid = document.getElementById('productGrid');
+    products.forEach(p => { 
+      const card = document.createElement('article'); 
+      card.className = 'card'; 
+      card.innerHTML = `<img src="${p.img}" alt="${p.title}" loading="lazy" /><h3>${p.title}</h3><p class="muted" style="flex-grow: 1; font-size: 13px;">${p.desc}</p><div class="meta"><div class="price">R$ ${p.price.toFixed(2).replace('.', ',')}</div><button class="btn-add" data-id="${p.id}">Adicionar</button></div>`; 
+      grid.appendChild(card); 
+    });
+    
+    document.getElementById('footer-year').textContent = `© ${new Date().getFullYear()} — Doriê - Art 3D`;
+    
+    let cart = [];
+    const cartSide = document.getElementById('cartSide'), openCartBtn = document.getElementById('openCartBtn'), closeCartBtn = document.getElementById('closeCartBtn'), cartItemsContainer = document.getElementById('cartItems'), cartTotalEl = document.getElementById('cartTotal');
+    
+    function updateCartUI() { 
+      const count = cart.reduce((s, i) => s + i.qty, 0); 
+      openCartBtn.textContent = `Carrinho (${count})`; 
+      cartItemsContainer.innerHTML = ''; 
+      if (cart.length === 0) { 
+        cartItemsContainer.innerHTML = '<div class="muted" style="padding: 20px; text-align: center;">Seu carrinho está vazio.</div>'; 
+      } else { 
+        cart.forEach(it => { 
+          const p = products.find(x => x.id === it.id); 
+          const el = document.createElement('div'); 
+          el.className = 'cart-item'; 
+          el.innerHTML = `<img src="${p.img}" alt="${p.title}" /><div class="cart-item-details"><div class="cart-item-title">${p.title}</div><div class="muted">R$ ${p.price.toFixed(2).replace('.', ',')}</div></div><div class="cart-item-controls"><button class="outline" data-op="dec" data-id="${it.id}">-</button><div>${it.qty}</div><button class="outline" data-op="inc" data-id="${it.id}">+</button><button class="cart-item-remove" data-remove="${it.id}">✕</button></div>`; 
+          cartItemsContainer.appendChild(el); 
+        }); 
+      } 
+      const total = cart.reduce((s, it) => s + (products.find(x=>x.id===it.id).price * it.qty), 0); 
+      cartTotalEl.textContent = total.toFixed(2).replace('.', ','); 
+    }
+    
+    function addToCart(id, qty = 1) { 
+      const exists = cart.find(i => i.id === id); 
+      if (exists) { exists.qty += qty; } else { cart.push({ id, qty }); } 
+      updateCartUI(); 
+      openCart(); 
+    }
+    
+    function changeQty(id, op) { 
+        const item = cart.find(x => x.id === id); 
+        if (!item) return; 
+        if (op === 'inc') { item.qty++; } else if (op === 'dec') { item.qty--; } 
+        cart = cart.filter(i => i.qty > 0); 
+        updateCartUI(); 
+    }
+    
+    document.addEventListener('click', e => { 
+      const target = e.target; 
+      if (target.matches('.card button[data-id]')) { addToCart(parseInt(target.getAttribute('data-id'))); } 
+      if (target.matches('[data-remove]')) { cart = cart.filter(i => i.id !== parseInt(target.getAttribute('data-remove'))); updateCartUI(); } 
+      if (target.matches('button[data-op]')) { changeQty(parseInt(target.getAttribute('data-id')), target.getAttribute('data-op')); } 
+      if (target.matches('#openCartBtn')) openCart(); 
+      if (target.matches('#closeCartBtn')) closeCart(); 
+      if (target.matches('#clearCartBtn')) { cart = []; updateCartUI(); } 
+      if (target.matches('#checkoutBtn')) { 
+        if (cart.length === 0) return alert('Seu carrinho está vazio.'); 
+        alert('Redirecionando para o WhatsApp para fechamento do pedido de matrizes e moldes 3D!'); 
+      } 
+    });
+    
+    function openCart() { cartSide.style.display = 'flex'; }
+    function closeCart() { cartSide.style.display = 'none'; }
+    
+    document.getElementById('contactForm').addEventListener('submit', e => { 
+      e.preventDefault(); 
+      alert('Solicitação de orçamento enviada com sucesso! Analisaremos o seu design para impressão 3D.'); 
+      e.target.reset(); 
+    });
+    
+    updateCartUI();
+  </script>
+</body>
+</html>
